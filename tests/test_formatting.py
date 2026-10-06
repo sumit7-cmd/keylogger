@@ -1,11 +1,20 @@
-from pynput import keyboard
-
 from logger.formatting import format_key
 
 
+class FakeCharacterKey:
+    char = "x"
+
+
+class FakeSpecialKey:
+    char = None
+
+    def __str__(self):
+        return "Key.space"
+
+
 def test_formats_character_key():
-    assert format_key(keyboard.KeyCode.from_char("x")) == "x"
+    assert format_key(FakeCharacterKey()) == "x"
 
 
 def test_formats_special_key():
-    assert format_key(keyboard.Key.space) == "[Key.space]"
+    assert format_key(FakeSpecialKey()) == "[Key.space]"
